@@ -36,7 +36,7 @@ class TestCustomerClass:
 
     def test_all_customers(self):
         '''returns all of the customer instances'''
-        Customer._all = []
+        Customer.all_customers = []
         customer1 = Customer("John", "Doe")
         customer2 = Customer("Jane", "Smith")
         assert Customer.all() == [customer1, customer2]
