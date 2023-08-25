@@ -4,8 +4,8 @@ from restaurants import Customer, Restaurant, Review
 import io
 import sys
 
-class TestRestaurantReviewSystem:
-    '''Restaurant, Customer, and Review in restaurants.py'''
+class TestCustomerClass:
+    '''Customer in restaurants.py'''
 
     def test_given_name(self):
         '''returns the customer's given name'''
@@ -25,13 +25,13 @@ class TestRestaurantReviewSystem:
     def test_given_name_change(self):
         '''should be able to change the given name after creation'''
         customer = Customer("John", "Doe")
-        customer.given_name("Jane")
+        customer.first_name = "Jane"
         assert customer.given_name() == "Jane"
 
     def test_family_name_change(self):
         '''should be able to change the family name after creation'''
         customer = Customer("John", "Doe")
-        customer.family_name("Smith")
+        customer.first_name = "Smith"
         assert customer.family_name() == "Smith"
 
     def test_all_customers(self):

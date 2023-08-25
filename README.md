@@ -73,7 +73,9 @@ Write the following methods in the classes in the files provided. Feel free to b
   - returns the full name of the customer, with the given name and the family name concatenated, Western style.
 - `Customer all()`
   - returns **all** of the customer instances
-Restaurant
+
+`Restaurant`
+
 - `Restaurant __init__()`
   - Restaurants should be initialized with a name, as a string
 - `Restaurant name()`
