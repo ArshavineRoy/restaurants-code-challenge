@@ -31,7 +31,7 @@ class TestCustomerClass:
     def test_family_name_change(self):
         '''should be able to change the family name after creation'''
         customer = Customer("John", "Doe")
-        customer.first_name = "Smith"
+        customer.last_name = "Smith"
         assert customer.family_name() == "Smith"
 
     def test_all_customers(self):
