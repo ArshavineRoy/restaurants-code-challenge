@@ -40,3 +40,24 @@ class TestCustomerClass:
         customer1 = Customer("John", "Doe")
         customer2 = Customer("Jane", "Smith")
         assert Customer.all() == [customer1, customer2]
+
+class TestRestaurantClass:
+    '''Restaurant in restaurants.py'''
+
+    def test_initialization_with_name_arg(self):
+        '''Restaurants should be initialized with a name, as a string'''
+        restaurant = Restaurant("Highlands")
+        assert restaurant.name == "Highlands"
+
+    def test_name_is_a_string(self):
+        '''name argument must be a string'''
+        restaurant = Restaurant("Highlands")
+        assert isinstance(restaurant.name, str) is True
+
+    def test_cannot_change_restaurant_name(self):
+        '''should not be able to change after the restaurant is created'''
+        restaurant = Restaurant("Highlands")
+        restaurant.name = "Kilimanjaro Jamia"
+        assert restaurant.name == "Highlands"
+
+    
