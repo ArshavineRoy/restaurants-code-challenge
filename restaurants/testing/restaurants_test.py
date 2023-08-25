@@ -4,6 +4,13 @@ from restaurants import Customer, Restaurant, Review
 import io
 import sys
 
+# Review class tests
+class TestReviewClass:
+    pass
+
+
+
+# Customer class tests
 class TestCustomerClass:
     '''Customer in restaurants.py'''
 
@@ -41,6 +48,7 @@ class TestCustomerClass:
         customer2 = Customer("Jane", "Smith")
         assert Customer.all() == [customer1, customer2]
 
+# Restaurant class tests
 class TestRestaurantClass:
     '''Restaurant in restaurants.py'''
 
@@ -54,10 +62,18 @@ class TestRestaurantClass:
         restaurant = Restaurant("Highlands")
         assert isinstance(restaurant.name, str) is True
 
+    def test_print_if_name_not_string(self):
+        '''prints "Name must be a string." if not a string.'''
+        captured_out = io.StringIO()
+        sys.stdout = captured_out
+        restaurant = Restaurant(123)
+        sys.stdout = sys.__stdout__
+        assert (captured_out.getvalue() == "Name must be a string.\n")
+        
+
     def test_cannot_change_restaurant_name(self):
         '''should not be able to change after the restaurant is created'''
         restaurant = Restaurant("Highlands")
         restaurant.name = "Kilimanjaro Jamia"
         assert restaurant.name == "Highlands"
 
-    

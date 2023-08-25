@@ -4,8 +4,19 @@ class Review:
         pass
 
 class Restaurant:
-    def __init__(self):
-        pass
+    def __init__(self, name):
+        if isinstance(name, str):
+            self._name = name
+        else:
+            print("Name must be a string.")
+    
+    def get_name(self):
+        return self._name
+    
+    def set_name(self, name):
+        return self._name
+    
+    name = property(get_name, set_name)
     
 
 class Customer:
@@ -89,3 +100,7 @@ class Customer:
 # print(customer.family_name())
 
 # print(Customer.all())
+
+# restaurant1 = Restaurant("Highlands")
+# restaurant1.name = "Azuri"
+# print(restaurant1.name)
