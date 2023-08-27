@@ -28,6 +28,11 @@ class Restaurant:
             self._name = name
         else:
             print("Name must be a string.")
+
+        self._reviews = []
+
+    def reviews(self):
+        return self._reviews
     
     def get_name(self):
         return self._name
@@ -50,6 +55,9 @@ class Customer:
             print("All names must be a string.")
             self._first_name = ""
             self._last_name = ""
+
+        # Add reviews for each customer instance
+        self._reviews = []
 
         # Once created, append the instance to 'all_customers'
         Customer.all_customers.append(self)
@@ -102,6 +110,16 @@ class Customer:
         # return f"Customer('{self.first_name}', '{self.last_name}')"
         return self.full_name()
     
+    # Adding customer reviews - create review instances for each
+    def add_review(self, restaurant: Restaurant, rating: int):
+        review = Review(self, restaurant, rating)
+        self._reviews.append(review)
+        restaurant.reviews().append(review)
+
+    def reviews(self):
+        customer_review_rep = [f"{review.restaurant.name} - {review.rating()} stars" for review in self._reviews]
+        return f"Reviews by {self.full_name()}: {', '.join(customer_review_rep)}"
+    
     
 
 
@@ -137,3 +155,18 @@ class Customer:
 # reviews = Review.all()
 # for review in reviews:
 #     print(review)
+
+# Create customers
+customer1 = Customer("John", "Doe")
+customer2 = Customer("Jane", "Smith")
+
+# Create restaurants
+restaurant1 = Restaurant("Restaurant A")
+restaurant2 = Restaurant("Restaurant B")
+
+# Add reviews
+customer1.add_review(restaurant1, 4)
+customer1.add_review(restaurant2, 5)
+customer2.add_review(restaurant1, 3)
+
+print(customer1.reviews())
