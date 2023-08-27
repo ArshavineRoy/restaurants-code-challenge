@@ -99,6 +99,14 @@ class Restaurant:
             if review.restaurant() == self.name:
                 customer_set.add(review.customer())
         return customer_set
+    
+    # Returns the average star rating for a restaurant based on its reviews
+    def average_star_rating(self):
+        total_ratings = sum(review.rating() for review in self._reviews)
+        num_ratings = len(self._reviews)
+        if num_ratings == 0:
+            return 0
+        return total_ratings / num_ratings
 
 
     
@@ -260,7 +268,7 @@ restaurant2 = Restaurant("Kilimanjaro Jamia")
 # Add reviews
 customer1.add_review(restaurant1, 4)
 customer1.add_review(restaurant2, 5)
-customer2.add_review(restaurant1, 6)
+customer2.add_review(restaurant1, 3)
 
 # print(customer1.reviews())
 # print(review1.customer())
@@ -271,4 +279,5 @@ customer2.add_review(restaurant1, 6)
 # print(customer1.restaurants())
 # print(customer1.num_reviews())
 # print(Customer.find_by_name("John Doe"))
-print(Customer.find_all_by_given_name("John"))
+# print(Customer.find_all_by_given_name("John"))
+print(restaurant1.average_star_rating())
