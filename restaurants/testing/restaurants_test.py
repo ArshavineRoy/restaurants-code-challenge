@@ -32,10 +32,19 @@ class TestReviewClass:
         option2 = "All reviews: John Doe for Highlands: 3 stars, Jane Doe for Kilimanjaro Jamia: 5 stars"
         assert Review.all() == option1 or option2
 
-    def test_customer(self):
+    def test_review_customer(self):
         '''returns the customer object for that review'''
-        review = Review("John Doe", "Highlands", 4)
-        assert review.customer() == "John Doe"
+        customer = Customer("John", "Doe")
+        restaurant = Restaurant("Highlands")
+        review = Review(customer, restaurant, 4)
+        assert review.customer() == customer
+
+    def test_review_restaurant(self):
+        '''returns the restaurant object for that given review'''
+        customer = Customer("John", "Doe")
+        restaurant = Restaurant("Highlands")
+        review = Review(customer, restaurant, 4)
+        assert review.restaurant() == restaurant
 
 
 # Customer class tests
