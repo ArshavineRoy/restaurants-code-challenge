@@ -56,6 +56,7 @@ class Review:
     def all(cls):
         return f"All reviews: {', '.join({str(review) for review in cls.all_reviews})}" # using a set so there's no duplication of reviews
 
+
     def __str__(self):
         return f'{self._customer} for {self._restaurant}: {self._rating} stars'
     
@@ -186,7 +187,7 @@ class Customer:
     
     # Adding customer reviews - create review instances for each
     def add_review(self, restaurant: Restaurant, rating: int):
-        review = Review(self.full_name(), restaurant.name, rating)  # Use self.full_name() instead of self
+        review = Review(self.full_name(), restaurant.name, rating)
         self._reviews.append(review)
         restaurant._reviews.append(review)
         # restaurant.restaurant_customers.add(review)
@@ -221,69 +222,3 @@ class Customer:
             if customer.given_name() == given_name:
                 matching_customers.append(customer)
         return matching_customers
-
-    
-# customer_1 = Customer("John", "Doe")
-# customer_2 = Customer("Bill", "Gates")
-# customer_3 = Customer("Weird", "Person")
-# customer_4 = Customer("Forky", "Biscuit")
-# customer_5 = Customer("Anne", "Kiguta")
-# customer_6 = Customer("Wes", "Snipes")
-# print(customer.family_name())
-# # print(customer.full_name())
-# # customer.first_name = "Jane"
-# # print(customer.given_name())
-# customer.last_name = "Smith"
-# print(customer.family_name())
-
-# print(Customer.all())
-
-# restaurant1 = Restaurant("Highlands")
-# restaurant1.name = "Azuri"
-# print(restaurant1.name)
-
-# review1 = Review("John Doe", "Highlands", 5)
-# review2 = Review("John Doe", "abc", 3)
-# review3 = Review("John Doe", "xyz", 2)
-# review4 = Review("John Doe", "CJs", 5)
-# print(Review.all())
-
-
-# print(review1.rating())
-
-# More >>
-# Create customers
-# customer1 = Customer("John", "Doe")
-# customer2 = Customer("Jane", "Smith")
-# customer3 = Customer("John", "Johnson")
-
-# Create reviews
-# review1 = Review("John Doe", "Highlands", 3)
-# review2 = Review("Mike Posner", "Azuri", 5)
-# review3 = Review("Travis Scott", "Pwani Dishes", 4)
-# review4 = Review("Jane Doe", "Kilimanjaro Jamia", 5)
-# review5 = Review("Ed Sheeran", "Highlands", 4)
-# review6 = Review("Ed Sheeran", "Highlands", 4)
-
-
-# Create restaurants
-# restaurant1 = Restaurant("Highlands")
-# restaurant2 = Restaurant("Kilimanjaro Jamia")
-
-# Add reviews
-# customer1.add_review(restaurant1, 4)
-# customer1.add_review(restaurant2, 5)
-# customer2.add_review(restaurant1, 3)
-
-# print(customer1.reviews())
-# print(review1.customer())
-# print(review1.restaurant())
-# print(restaurant1.reviews())
-# print(Review.all())
-# print(restaurant1.customers())
-# print(customer1.restaurants())
-# print(customer1.num_reviews())
-# print(Customer.find_by_name("John Doe"))
-# print(Customer.find_all_by_given_name("John"))
-# print(restaurant1.average_star_rating())
-# print(restaurant2.average_star_rating())

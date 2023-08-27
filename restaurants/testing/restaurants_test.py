@@ -197,3 +197,14 @@ class TestRestaurantClass:
         customer2.add_review(restaurant1, 3)
         assert restaurant1.customers() == {'Jane Smith', 'John Doe', 'Ed Sheeran'}
 
+    def test_restaurant_average_star_rating(self):
+        '''returns the average star rating for a restaurant based on its reviews'''
+        customer1 = Customer("John", "Doe")
+        customer2 = Customer("Jane", "Smith")
+        customer3 = Customer("John", "Johnson")
+        restaurant1 = Restaurant("Highlands")
+        restaurant2 = Restaurant("Kilimanjaro Jamia")
+        customer1.add_review(restaurant1, 4)
+        customer1.add_review(restaurant2, 5)
+        customer2.add_review(restaurant1, 3)
+        assert restaurant1.average_star_rating() == 3.5
