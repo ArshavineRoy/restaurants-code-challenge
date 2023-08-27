@@ -1,7 +1,26 @@
 #!/usr/bin/env python3
 class Review:
-    def __init__(self):
-        pass
+
+    all_reviews = []
+
+    def __init__(self, customer: str, restaurant: str, rating: int):
+        self.customer = customer
+        self.restaurant = restaurant
+        self._rating = rating
+
+        # Append each instance into all_reviews list 
+        Review.all_reviews.append(self)
+
+    def rating(self):
+        return self._rating
+    
+
+    @classmethod
+    def all(cls):
+        return [str(review) for review in cls.all_reviews]
+
+    def __str__(self):
+        return f'Review by {self.customer} for {self.restaurant}: {self._rating} stars'
 
 class Restaurant:
     def __init__(self, name):
@@ -104,3 +123,17 @@ class Customer:
 # restaurant1 = Restaurant("Highlands")
 # restaurant1.name = "Azuri"
 # print(restaurant1.name)
+
+# review1 = Review("John Doe", "Highlands", 5)
+# review2 = Review("John Doe", "abc", 3)
+# review3 = Review("John Doe", "xyz", 2)
+# review4 = Review("John Doe", "CJs", 5)
+# print(Review.all())
+
+
+# print(review1.rating())
+
+# print(Review.all())
+# reviews = Review.all()
+# for review in reviews:
+#     print(review)
