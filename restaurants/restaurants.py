@@ -183,6 +183,11 @@ class Customer:
         customer_review_rep = [f"{review._restaurant} - {review.rating()} stars" for review in self._reviews]
         return f"Reviews by {self.full_name()}: {', '.join(customer_review_rep)}"
     
+    # Returns a unique list of all restaurants a customer has reviewed
+    def restaurants(self):
+        reviewed_restaurants = {review.restaurant() for review in self._reviews}
+        return reviewed_restaurants
+    
     
 # customer_1 = Customer("John", "Doe")
 # customer_2 = Customer("Bill", "Gates")
@@ -235,9 +240,10 @@ customer1.add_review(restaurant1, 4)
 customer1.add_review(restaurant2, 5)
 customer2.add_review(restaurant1, 6)
 
-print(customer1.reviews())
-print(review1.customer())
-print(review1.restaurant())
-print(restaurant1.reviews())
-print(Review.all())
-print(restaurant1.customers())
+# print(customer1.reviews())
+# print(review1.customer())
+# print(review1.restaurant())
+# print(restaurant1.reviews())
+# print(Review.all())
+# print(restaurant1.customers())
+print(customer1.restaurants())
