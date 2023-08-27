@@ -188,6 +188,8 @@ class Customer:
         reviewed_restaurants = {review.restaurant() for review in self._reviews}
         return reviewed_restaurants
     
+    def num_reviews(self):
+        return len(self._reviews)
     
 # customer_1 = Customer("John", "Doe")
 # customer_2 = Customer("Bill", "Gates")
@@ -246,4 +248,5 @@ customer2.add_review(restaurant1, 6)
 # print(restaurant1.reviews())
 # print(Review.all())
 # print(restaurant1.customers())
-print(customer1.restaurants())
+# print(customer1.restaurants())
+print(customer1.num_reviews())
