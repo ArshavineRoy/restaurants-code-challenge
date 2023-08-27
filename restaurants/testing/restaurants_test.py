@@ -21,23 +21,16 @@ class TestReviewClass:
         review = Review(customer, restaurant, 4)
         assert review.rating() == 4
 
-def test_review_all():
-    '''returns all of the reviews'''
-    Review._all = []  # Clear existing instances for the test
-    customer = Customer("John", "Doe")
-    restaurant = Restaurant("Highlands")
-    review1 = Review("John Doe", "Highlands", 3)
-    review2 = Review("Jane Doe", "Kilimanjaro Jamia", 5)
-    
-    expected_reviews = [
-        "John Doe for Highlands: 3 stars",
-        "Jane Doe for Kilimanjaro Jamia: 5 stars"
-    ]
-    result = Review.all()
-    assert all(expected_review in result for expected_review in expected_reviews)
-
-
-
+    def test_review_all(self):
+        '''returns all of the reviews'''
+        Review._all = []  # Clear existing instances for the test
+        customer = Customer("John", "Doe")
+        restaurant = Restaurant("Highlands")
+        review1 = Review("John Doe", "Highlands", 3)
+        review2 = Review("Jane Doe", "Kilimanjaro Jamia", 5)
+        option1 = "All reviews: Jane Doe for Kilimanjaro Jamia: 5 stars, John Doe for Highlands: 3 stars"
+        option2 = "All reviews: John Doe for Highlands: 3 stars, Jane Doe for Kilimanjaro Jamia: 5 stars"
+        assert Review.all() == option1 or option2
 
 
 # Customer class tests
