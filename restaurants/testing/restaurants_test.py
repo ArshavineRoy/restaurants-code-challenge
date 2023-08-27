@@ -102,6 +102,17 @@ class TestCustomerClass:
         customer2.add_review(restaurant1, 3)
         assert customer1.restaurants() == {'Highlands', 'Kilimanjaro Jamia'}
 
+    def test_customer_add_review(self):
+        '''creates a new review and associates it with the customer and restaurant'''
+        customer1 = Customer("John", "Doe")
+        restaurant1 = Restaurant("Highlands")
+        restaurant2 = Restaurant("Kilimanjaro Jamia")
+        customer1.add_review(restaurant1, 3)
+        customer1.add_review(restaurant2, 4)
+        assert len(Review.all()) > 0
+        assert 3 in restaurant1.reviews()
+
+
 # Restaurant class tests
 class TestRestaurantClass:
     '''Restaurant in restaurants.py'''
