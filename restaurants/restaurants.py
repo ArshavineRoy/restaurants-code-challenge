@@ -253,27 +253,27 @@ class Customer:
 
 # More >>
 # Create customers
-customer1 = Customer("John", "Doe")
-customer2 = Customer("Jane", "Smith")
-customer3 = Customer("John", "Johnson")
+# customer1 = Customer("John", "Doe")
+# customer2 = Customer("Jane", "Smith")
+# customer3 = Customer("John", "Johnson")
 
 # Create reviews
-review1 = Review("John Doe", "Highlands", 3)
-review2 = Review("Mike Posner", "Azuri", 5)
-review3 = Review("Travis Scott", "Pwani Dishes", 4)
-review4 = Review("Jane Doe", "Kilimanjaro Jamia", 5)
-review5 = Review("Ed Sheeran", "Highlands", 4)
-review6 = Review("Ed Sheeran", "Highlands", 4)
+# review1 = Review("John Doe", "Highlands", 3)
+# review2 = Review("Mike Posner", "Azuri", 5)
+# review3 = Review("Travis Scott", "Pwani Dishes", 4)
+# review4 = Review("Jane Doe", "Kilimanjaro Jamia", 5)
+# review5 = Review("Ed Sheeran", "Highlands", 4)
+# review6 = Review("Ed Sheeran", "Highlands", 4)
 
 
 # Create restaurants
-restaurant1 = Restaurant("Highlands")
-restaurant2 = Restaurant("Kilimanjaro Jamia")
+# restaurant1 = Restaurant("Highlands")
+# restaurant2 = Restaurant("Kilimanjaro Jamia")
 
 # Add reviews
-customer1.add_review(restaurant1, 4)
-customer1.add_review(restaurant2, 5)
-customer2.add_review(restaurant1, 3)
+# customer1.add_review(restaurant1, 4)
+# customer1.add_review(restaurant2, 5)
+# customer2.add_review(restaurant1, 3)
 
 # print(customer1.reviews())
 # print(review1.customer())
@@ -285,4 +285,5 @@ customer2.add_review(restaurant1, 3)
 # print(customer1.num_reviews())
 # print(Customer.find_by_name("John Doe"))
 # print(Customer.find_all_by_given_name("John"))
-print(restaurant1.average_star_rating())
+# print(restaurant1.average_star_rating())
+# print(restaurant2.average_star_rating())

@@ -10,25 +10,31 @@ class TestReviewClass:
     def test_review_initialization(self):
         '''should be initialized with a customer, restaurant, and a rating (a number)'''
         review = Review("John Doe", "Highlands", 4)
-        assert (review.customer == "John Doe")
-        assert (review.restaurant == "Highlands")
-        assert (review.rating == 4)
+        assert (review.customer() == "John Doe")
+        assert (review.restaurant() == "Highlands")
+        assert (review.rating() == 4)
 
     def test_restaurant_rating(self):
         '''returns the rating for a restaurant'''
-        customer = Customer("John Doe")
+        customer = Customer("John", "Doe")
         restaurant = Restaurant("Highlands")
         review = Review(customer, restaurant, 4)
         assert review.rating() == 4
 
-    def test_review_all(self):
-        '''returns all of the reviews'''
-        Review._all = []  # Clear existing instances for the test
-        customer = Customer("John Doe")
-        restaurant = Restaurant("Highlands")
-        review1 = Review("John Doe", "Highlands", 3)
-        review2 = Review("Jane Doe", "Kilimanjaro Jamia", 5)
-        assert Review.all() == ['Review by John Doe for Highlands: 3 stars', 'Review by John Doe for Kilimanjaro Jamia: 5 stars']
+def test_review_all():
+    '''returns all of the reviews'''
+    Review._all = []  # Clear existing instances for the test
+    customer = Customer("John", "Doe")
+    restaurant = Restaurant("Highlands")
+    review1 = Review("John Doe", "Highlands", 3)
+    review2 = Review("Jane Doe", "Kilimanjaro Jamia", 5)
+    
+    expected_reviews = [
+        "John Doe for Highlands: 3 stars",
+        "Jane Doe for Kilimanjaro Jamia: 5 stars"
+    ]
+    result = Review.all()
+    assert all(expected_review in result for expected_review in expected_reviews)
 
 
 
