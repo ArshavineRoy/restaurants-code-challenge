@@ -33,6 +33,19 @@ class Review:
     customer_name = property(get_customer, set_customer)
 
 
+
+    # Getters and setters for the restaurant object
+    # Once a review is created, should not be able to change the customer
+
+    def get_restaurant(self):
+        return self._restaurant
+    
+    def set_restaurant(self, restaurant):
+        return self._restaurant
+    
+    restaurant_name = property(get_restaurant, set_restaurant)
+
+
     @classmethod
     def all(cls):
         return f"All reviews: {', '.join([str(review) for review in cls.all_reviews])}"
