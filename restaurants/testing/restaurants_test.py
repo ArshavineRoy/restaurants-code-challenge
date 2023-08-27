@@ -114,3 +114,14 @@ class TestRestaurantClass:
         restaurant.name = "Kilimanjaro Jamia"
         assert restaurant.name == "Highlands"
 
+    def test_restaurant_reviews(self):
+        '''returns a list of all reviews for that restaurant'''
+        customer1 = Customer("John", "Doe")
+        customer2 = Customer("Jane", "Smith")
+        restaurant1 = Restaurant("Highlands")
+        restaurant2 = Restaurant("Kilimanjaro Jamia")
+        customer1.add_review(restaurant1, 4)
+        customer1.add_review(restaurant2, 5)
+        customer2.add_review(restaurant1, 3)
+        assert restaurant1.reviews() == [4, 3]
+
