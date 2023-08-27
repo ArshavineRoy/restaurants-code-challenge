@@ -188,8 +188,18 @@ class Customer:
         reviewed_restaurants = {review.restaurant() for review in self._reviews}
         return reviewed_restaurants
     
+    # Returns the total number of reviews that a customer has authored
     def num_reviews(self):
         return len(self._reviews)
+    
+    # Returns the first customer whose full name matches full name in all_customers
+    @classmethod
+    def find_by_name(cls, name):
+        for customer in cls.all_customers:
+            if customer.full_name() == name:
+                return customer
+        return None
+
     
 # customer_1 = Customer("John", "Doe")
 # customer_2 = Customer("Bill", "Gates")
@@ -249,4 +259,5 @@ customer2.add_review(restaurant1, 6)
 # print(Review.all())
 # print(restaurant1.customers())
 # print(customer1.restaurants())
-print(customer1.num_reviews())
+# print(customer1.num_reviews())
+print(Customer.find_by_name("John Doe"))
