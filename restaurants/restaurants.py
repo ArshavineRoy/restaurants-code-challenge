@@ -4,8 +4,8 @@ class Review:
     all_reviews = []
 
     def __init__(self, customer: str, restaurant: str, rating: int):
-        self.customer = customer
-        self.restaurant = restaurant
+        self._customer = customer
+        self._restaurant = restaurant
         self._rating = rating
 
         # Append each instance into all_reviews list 
@@ -14,13 +14,31 @@ class Review:
     def rating(self):
         return self._rating
     
+    def customer(self):
+        return self._customer
+    
+    def restaurant(self):
+        return self._restaurant
+    
+
+    # Getters and setters for the customer object
+    # Once a review is created, should not be able to change the customer
+
+    def get_customer(self):
+        return self._customer
+    
+    def set_customer(self, customer):
+        return self._customer
+    
+    customer_name = property(get_customer, set_customer)
+
 
     @classmethod
     def all(cls):
-        return [str(review) for review in cls.all_reviews]
+        return f"All reviews: {', '.join([str(review) for review in cls.all_reviews])}"
 
     def __str__(self):
-        return f'Review by {self.customer} for {self.restaurant}: {self._rating} stars'
+        return f'{self._customer} for {self.restaurant.name}: {self._rating} stars'
 
 class Restaurant:
     def __init__(self, name):
@@ -33,6 +51,9 @@ class Restaurant:
 
     def reviews(self):
         return self._reviews
+
+    # Getters and setters for the name
+    # 
     
     def get_name(self):
         return self._name
@@ -117,7 +138,7 @@ class Customer:
         restaurant.reviews().append(review)
 
     def reviews(self):
-        customer_review_rep = [f"{review.restaurant.name} - {review.rating()} stars" for review in self._reviews]
+        customer_review_rep = [f"{review._restaurant.name} - {review.rating()} stars" for review in self._reviews]
         return f"Reviews by {self.full_name()}: {', '.join(customer_review_rep)}"
     
     
@@ -160,6 +181,9 @@ class Customer:
 customer1 = Customer("John", "Doe")
 customer2 = Customer("Jane", "Smith")
 
+review1 = Review("John Doe", "Highlands", 3)
+review2 = Review("Jane Doe", "Kilimanjaro Jamia", 5)
+
 # Create restaurants
 restaurant1 = Restaurant("Restaurant A")
 restaurant2 = Restaurant("Restaurant B")
@@ -170,3 +194,7 @@ customer1.add_review(restaurant2, 5)
 customer2.add_review(restaurant1, 3)
 
 print(customer1.reviews())
+print(review1.customer())
+print(review1.restaurant())
+
+
