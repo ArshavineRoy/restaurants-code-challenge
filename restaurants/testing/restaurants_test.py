@@ -130,6 +130,15 @@ class TestCustomerClass:
 
         assert Customer.find_by_name("John Doe").full_name() == "John Doe"
 
+    def test_customer_find_all_by_given_name(self):
+        '''returns a list containing all customers with the given given name'''
+        customer1 = Customer("John", "Doe")
+        customer2 = Customer("Jane", "Smith")
+        customer3 = Customer("John", "Johnson")
+        
+        matching_customers = Customer.find_all_by_given_name("John")
+        assert customer1 in matching_customers
+        assert customer3 in matching_customers
 
 # Restaurant class tests
 class TestRestaurantClass:
