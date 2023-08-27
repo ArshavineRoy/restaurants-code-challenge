@@ -123,7 +123,12 @@ class TestCustomerClass:
         assert customer1.num_reviews() == 2
 
 
+    def test_customer_find_by_name(self):
+        '''returns the first customer whose full name matches'''
+        customer1 = Customer("John", "Doe")
+        customer2 = Customer("Jane", "Smith")
 
+        assert Customer.find_by_name("John Doe").full_name() == "John Doe"
 
 
 # Restaurant class tests
