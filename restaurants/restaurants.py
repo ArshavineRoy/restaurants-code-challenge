@@ -14,13 +14,15 @@ class Review:
 
 
 
-
+    # returns the rating for a restaurant.
     def rating(self):
         return self._rating
     
+    # returns the customer object for that review
     def customer(self):
         return self._customer
     
+    # returns the restaurant object for that given review
     def restaurant(self):
         return self._restaurant
     
@@ -49,7 +51,7 @@ class Review:
     
     restaurant_name = property(get_restaurant, set_restaurant)
 
-
+    # returns all of the reviews
     @classmethod
     def all(cls):
         return f"All reviews: {', '.join({str(review) for review in cls.all_reviews})}" # using a set so there's no duplication of reviews
@@ -78,6 +80,7 @@ class Restaurant:
         Restaurant.all_restaurants.append(self)
 
 
+    # returns a list of all reviews for that restaurant
     def reviews(self):
         return [review.rating() for review in self._reviews]
         # return f"Reviews for {self.name} restaurant: {', '.join([str(review.rating()) for review in self._reviews])}"
@@ -89,10 +92,11 @@ class Restaurant:
         return self._name
     
     def set_name(self, name):
-        return self._name
+        return self._name   # should not be able to change after the restaurant is created
     
     name = property(get_name, set_name)
 
+    # Returns a unique list of all customers who have reviewed a particular restaurant
     def customers(self):
         customer_set = {review.customer() for review in self._reviews if review.restaurant() == self.name}
         for review in Review.all_reviews:
@@ -131,12 +135,15 @@ class Customer:
         # Once created, append the instance to 'all_customers'
         Customer.all_customers.append(self)
 
+    # returns the customer's given name
     def given_name(self):
         return self._first_name
     
+   # returns the customer's family name
     def family_name(self):
         return self._last_name
 
+    # returns the full name of the customer
     def full_name(self):
         self.customer_full_name = f'{self._first_name} {self._last_name}'
         return self.customer_full_name
@@ -166,9 +173,7 @@ class Customer:
     
     last_name = property(get_family_name, set_family_name)
 
-    # Get all of the customer instances
-    # Defining a class method that returns the list of all customer instances in all_customers list.
-
+    # returns the list of all customer instances - in all_customers list.
     @classmethod
     def all(cls):
         return cls.all_customers
@@ -186,7 +191,7 @@ class Customer:
         restaurant._reviews.append(review)
         # restaurant.restaurant_customers.add(review)
 
-
+    # returns a list of all reviews for that restaurant
     def reviews(self):
         customer_review_rep = [f"{review._restaurant} - {review.rating()} stars" for review in self._reviews]
         return f"Reviews by {self.full_name()}: {', '.join(customer_review_rep)}"
