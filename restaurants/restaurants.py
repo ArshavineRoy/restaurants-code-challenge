@@ -199,6 +199,15 @@ class Customer:
             if customer.full_name() == name:
                 return customer
         return None
+    
+    # Returns an list containing all customers with a given name
+    @classmethod
+    def find_all_by_given_name(cls, given_name):
+        matching_customers = []
+        for customer in cls.all_customers:
+            if customer.given_name() == given_name:
+                matching_customers.append(customer)
+        return matching_customers
 
     
 # customer_1 = Customer("John", "Doe")
@@ -233,6 +242,7 @@ class Customer:
 # Create customers
 customer1 = Customer("John", "Doe")
 customer2 = Customer("Jane", "Smith")
+customer3 = Customer("John", "Johnson")
 
 # Create reviews
 review1 = Review("John Doe", "Highlands", 3)
@@ -260,4 +270,5 @@ customer2.add_review(restaurant1, 6)
 # print(restaurant1.customers())
 # print(customer1.restaurants())
 # print(customer1.num_reviews())
-print(Customer.find_by_name("John Doe"))
+# print(Customer.find_by_name("John Doe"))
+print(Customer.find_all_by_given_name("John"))
