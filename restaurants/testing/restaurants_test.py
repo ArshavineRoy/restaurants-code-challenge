@@ -85,6 +85,23 @@ class TestCustomerClass:
         customer2 = Customer("Jane", "Smith")
         assert Customer.all() == [customer1, customer2]
 
+    def test_customer_reviewed_restaurants(self):
+        '''returns a unique list of all restaurants a customer has reviewed'''
+        customer1 = Customer("John", "Doe")
+        customer2 = Customer("Jane", "Smith")
+        customer3 = Customer("John", "Johnson")
+        review1 = Review("John Doe", "Highlands", 3)
+        review2 = Review("Mike Posner", "Azuri", 5)
+        review3 = Review("Jane Doe", "Kilimanjaro Jamia", 2)
+        review4 = Review("Ed Sheeran", "Highlands", 4)
+        review5 = Review("Ed Sheeran", "Highlands", 4)
+        restaurant1 = Restaurant("Highlands")
+        restaurant2 = Restaurant("Kilimanjaro Jamia")
+        customer1.add_review(restaurant1, 4)
+        customer1.add_review(restaurant2, 5)
+        customer2.add_review(restaurant1, 3)
+        assert customer1.restaurants() == {'Highlands', 'Kilimanjaro Jamia'}
+
 # Restaurant class tests
 class TestRestaurantClass:
     '''Restaurant in restaurants.py'''
