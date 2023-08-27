@@ -10,6 +10,10 @@ class Review:
 
         # Append each instance into all_reviews list 
         Review.all_reviews.append(self)
+        Restaurant.restaurant_customers.add(self._customer)
+
+
+
 
     def rating(self):
         return self._rating
@@ -59,6 +63,7 @@ class Review:
 class Restaurant:
 
     all_restaurants = []
+    restaurant_customers = set()
 
     def __init__(self, name):
         if isinstance(name, str):
@@ -67,6 +72,7 @@ class Restaurant:
             print("Name must be a string.")
 
         self._reviews = []
+
 
        # Add all restaurant instances to 'all_restaurants'
         Restaurant.all_restaurants.append(self)
@@ -87,6 +93,12 @@ class Restaurant:
     
     name = property(get_name, set_name)
 
+    def customers(self):
+        customer_set = {review.customer() for review in self._reviews if review.restaurant() == self.name}
+        for review in Review.all_reviews:
+            if review.restaurant() == self.name:
+                customer_set.add(review.customer())
+        return customer_set
 
 
     
@@ -161,9 +173,10 @@ class Customer:
     
     # Adding customer reviews - create review instances for each
     def add_review(self, restaurant: Restaurant, rating: int):
-        review = Review(self.full_name(), restaurant.name, rating)
+        review = Review(self.full_name(), restaurant.name, rating)  # Use self.full_name() instead of self
         self._reviews.append(review)
         restaurant._reviews.append(review)
+        # restaurant.restaurant_customers.add(review)
 
 
     def reviews(self):
@@ -204,20 +217,27 @@ class Customer:
 customer1 = Customer("John", "Doe")
 customer2 = Customer("Jane", "Smith")
 
+# Create reviews
 review1 = Review("John Doe", "Highlands", 3)
-review2 = Review("Jane Doe", "Kilimanjaro Jamia", 5)
+review2 = Review("Mike Posner", "Azuri", 5)
+review3 = Review("Travis Scott", "Pwani Dishes", 4)
+review4 = Review("Jane Doe", "Kilimanjaro Jamia", 5)
+review5 = Review("Ed Sheeran", "Highlands", 4)
+review6 = Review("Ed Sheeran", "Highlands", 4)
+
 
 # Create restaurants
 restaurant1 = Restaurant("Highlands")
 restaurant2 = Restaurant("Kilimanjaro Jamia")
 
 # Add reviews
-customer1.add_review(restaurant1, 3)
+customer1.add_review(restaurant1, 4)
 customer1.add_review(restaurant2, 5)
-customer2.add_review(restaurant1, 3)
+customer2.add_review(restaurant1, 6)
 
 print(customer1.reviews())
 print(review1.customer())
 print(review1.restaurant())
 print(restaurant1.reviews())
 print(Review.all())
+print(restaurant1.customers())
