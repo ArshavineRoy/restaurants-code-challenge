@@ -48,12 +48,18 @@ class Review:
 
     @classmethod
     def all(cls):
-        return f"All reviews: {', '.join([str(review) for review in cls.all_reviews])}"
+        return f"All reviews: {', '.join({str(review) for review in cls.all_reviews})}" # using a set so there's no duplication of reviews
 
     def __str__(self):
-        return f'{self._customer} for {self.restaurant.name}: {self._rating} stars'
+        return f'{self._customer} for {self._restaurant}: {self._rating} stars'
+    
+
+''' RESTAURANT CLASS'''
 
 class Restaurant:
+
+    all_restaurants = []
+
     def __init__(self, name):
         if isinstance(name, str):
             self._name = name
@@ -62,11 +68,16 @@ class Restaurant:
 
         self._reviews = []
 
+       # Add all restaurant instances to 'all_restaurants'
+        Restaurant.all_restaurants.append(self)
+
+
     def reviews(self):
-        return self._reviews
+        return [review.rating() for review in self._reviews]
+        # return f"Reviews for {self.name} restaurant: {', '.join([str(review.rating()) for review in self._reviews])}"
+
 
     # Getters and setters for the name
-    # 
     
     def get_name(self):
         return self._name
@@ -75,7 +86,11 @@ class Restaurant:
         return self._name
     
     name = property(get_name, set_name)
+
+
+
     
+''' CUSTOMER CLASS'''
 
 class Customer:
 
@@ -146,17 +161,16 @@ class Customer:
     
     # Adding customer reviews - create review instances for each
     def add_review(self, restaurant: Restaurant, rating: int):
-        review = Review(self, restaurant, rating)
+        review = Review(self.full_name(), restaurant.name, rating)
         self._reviews.append(review)
-        restaurant.reviews().append(review)
+        restaurant._reviews.append(review)
+
 
     def reviews(self):
-        customer_review_rep = [f"{review._restaurant.name} - {review.rating()} stars" for review in self._reviews]
+        customer_review_rep = [f"{review._restaurant} - {review.rating()} stars" for review in self._reviews]
         return f"Reviews by {self.full_name()}: {', '.join(customer_review_rep)}"
     
     
-
-
 # customer_1 = Customer("John", "Doe")
 # customer_2 = Customer("Bill", "Gates")
 # customer_3 = Customer("Weird", "Person")
@@ -185,11 +199,7 @@ class Customer:
 
 # print(review1.rating())
 
-# print(Review.all())
-# reviews = Review.all()
-# for review in reviews:
-#     print(review)
-
+# More >>
 # Create customers
 customer1 = Customer("John", "Doe")
 customer2 = Customer("Jane", "Smith")
@@ -198,16 +208,16 @@ review1 = Review("John Doe", "Highlands", 3)
 review2 = Review("Jane Doe", "Kilimanjaro Jamia", 5)
 
 # Create restaurants
-restaurant1 = Restaurant("Restaurant A")
-restaurant2 = Restaurant("Restaurant B")
+restaurant1 = Restaurant("Highlands")
+restaurant2 = Restaurant("Kilimanjaro Jamia")
 
 # Add reviews
-customer1.add_review(restaurant1, 4)
+customer1.add_review(restaurant1, 3)
 customer1.add_review(restaurant2, 5)
 customer2.add_review(restaurant1, 3)
 
 print(customer1.reviews())
 print(review1.customer())
 print(review1.restaurant())
-
-
+print(restaurant1.reviews())
+print(Review.all())
