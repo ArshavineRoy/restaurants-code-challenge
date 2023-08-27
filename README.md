@@ -1,6 +1,6 @@
-# Object Relations Code Challenge - Restaurants
+# Restaurant Review System
 
-## Phase 3 Week 2 Code Challenge
+## Phase 3 Week 2 Code Challenge (Object Relations Code Challenge - Restaurants)
 
 [![license](https://img.shields.io/badge/license-%20MIT%20-green.svg)](./LICENSE)
 ![python version](https://img.shields.io/badge/python-3.10.12+-blue.svg)
@@ -12,6 +12,25 @@
 This repo contains code for a restaurant review system for Phase 3 Week 2 Code Challenge based on python classes and instances, class and instance methods, variable scope, object relationships, and lists and list methods working with a Yelp-style domain.
 
 This project utilizes the `pytest` library for testing purposes. The `pytest framework` makes it easy to write small, readable tests, and can scale to support complex functional testing for applications and libraries.
+
+*The test suite encompases all deliverables for this code challenge. All tests should be passing.*
+
+## Table of Contents
+
+- [Features](#features)
+- [Project Setup](#project-setup)
+- [Usage](#usage)
+- [Examples](#examples)
+- [Assignment Details](#assignment-details)
+- [Author & License](#author--license)
+
+## Features
+
+- Create and manage customer profiles
+- Add and retrieve reviews for restaurants
+- Calculate average star ratings for restaurants
+- Find customers and restaurants based on reviews
+- Retrieve a list of all reviews
 
 ## Project Setup
 
@@ -43,9 +62,9 @@ pipenv install
 pipenv shell
 ```
 
-### 5. Use pytest to run the tests
+### 5. Use pytest to run the test suite
 
-Tests for this project are contained in the `testing` directory, and are based on the deliverables for this challenge.
+Tests for this project are contained in the `testing` directory, and are based on the deliverables for this code challenge.
 
 `Pytest` provides useful information about what went right or wrong with the code:
 
@@ -59,6 +78,19 @@ To run the test suite, use the following in the `pipenv shell`:
 
 ```python
 pytest
+```
+
+## Usage
+
+You can use the Restaurant Review System to simulate interactions between customers, restaurants, and reviews. Follow these steps to get started:
+
+1. Create customer and restaurant instances.
+2. Add reviews using the add_review method.
+3. Retrieve information about customers, restaurants, and reviews using the provided methods.
+
+## Examples
+
+```python
 ```
 
 ## Assignment Details
@@ -121,7 +153,7 @@ python_version = "3.10"
 
 Write the following methods in the classes in the files provided. Feel free to build out any helper methods if needed.
 
-### Initializers, Readers, and Writers
+#### Initializers, Readers, and Writers
 
 `Customer`
 
@@ -155,7 +187,7 @@ Write the following methods in the classes in the files provided. Feel free to b
 - `Review all()`
   - returns all of the reviews
 
-### Object Relationship Methods
+#### Object Relationship Methods
 
 `Review`
 
@@ -180,7 +212,7 @@ Write the following methods in the classes in the files provided. Feel free to b
 - `Customer add_review(restaurant, rating)`
   - given a **restaurant object** and a star rating (as an integer), creates a new review and associates it with that customer and restaurant.
 
-### Aggregate and Association Methods
+#### Aggregate and Association Methods
 
 `Customer`
 
