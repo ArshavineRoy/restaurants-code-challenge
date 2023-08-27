@@ -112,6 +112,19 @@ class TestCustomerClass:
         assert len(Review.all()) > 0
         assert 3 in restaurant1.reviews()
 
+    def test_customer_num_reviews(self):
+        '''returns the total number of reviews that a customer has authored'''
+        customer1 = Customer("John", "Doe")
+        review1 = Review("John Doe", "Highlands", 3)
+        restaurant1 = Restaurant("Highlands")
+        restaurant2 = Restaurant("Kilimanjaro Jamia")
+        customer1.add_review(restaurant1, 4)
+        customer1.add_review(restaurant2, 5)
+        assert customer1.num_reviews() == 2
+
+
+
+
 
 # Restaurant class tests
 class TestRestaurantClass:
