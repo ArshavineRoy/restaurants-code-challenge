@@ -222,3 +222,28 @@ class Customer:
             if customer.given_name() == given_name:
                 matching_customers.append(customer)
         return matching_customers
+
+
+###
+# Examples
+
+customer1 = Customer("John", "Doe") # Create customer profiles
+customer2 = Customer("Jane", "Smith")
+customer3 = Customer("John", "Johnson")
+review1 = Review("John Doe", "Highlands", 3)
+review2 = Review("Mike Posner", "Azuri", 5)
+review3 = Review("Jane Doe", "Kilimanjaro Jamia", 2)
+review4 = Review("Ed Sheeran", "Highlands", 4)
+review5 = Review("Ed Sheeran", "Highlands", 4)
+restaurant1 = Restaurant("Highlands")
+restaurant2 = Restaurant("Kilimanjaro Jamia")
+customer1.add_review(restaurant1, 4) # Add reviews for restaurants
+customer1.add_review(restaurant2, 5)
+customer2.add_review(restaurant1, 3)
+
+print(customer1.first_name) 
+print(customer1.reviews()) # Find customers reviews
+print(restaurant1.reviews())  # Find restaurant reviews
+print(restaurant1.average_star_rating()) # Calculate average star ratings for restaurants
+print(Review.all()) # Retrieve a list of all reviews
+

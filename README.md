@@ -1,6 +1,6 @@
 # Restaurant Review System
 
-## Phase 3 Week 2 Code Challenge (Object Relations Code Challenge - Restaurants)
+## Phase 3 Week 2 : Object Relations Code Challenge - Restaurants
 
 [![license](https://img.shields.io/badge/license-%20MIT%20-green.svg)](./LICENSE)
 ![python version](https://img.shields.io/badge/python-3.10.12+-blue.svg)
@@ -91,6 +91,25 @@ You can use the Restaurant Review System to simulate interactions between custom
 ## Examples
 
 ```python
+customer1 = Customer("John", "Doe") # Create customer profiles
+customer2 = Customer("Jane", "Smith")
+customer3 = Customer("John", "Johnson")
+review1 = Review("John Doe", "Highlands", 3)
+review2 = Review("Mike Posner", "Azuri", 5)
+review3 = Review("Jane Doe", "Kilimanjaro Jamia", 2)
+review4 = Review("Ed Sheeran", "Highlands", 4)
+review5 = Review("Ed Sheeran", "Highlands", 4)
+restaurant1 = Restaurant("Highlands")
+restaurant2 = Restaurant("Kilimanjaro Jamia")
+customer1.add_review(restaurant1, 4) # Add reviews for restaurants
+customer1.add_review(restaurant2, 5)
+customer2.add_review(restaurant1, 3)
+
+print(customer1.first_name) 
+print(customer1.reviews()) # Find customers reviews
+print(restaurant1.reviews())  # Find restaurant reviews
+print(restaurant1.average_star_rating()) # Calculate average star ratings for restaurants
+print(Review.all()) # Retrieve a list of all reviews
 ```
 
 ## Assignment Details
@@ -130,24 +149,6 @@ For our purposes, a `Restaurant` has many `Reviews`, a `Customer` has many `Revi
 *Similarly, messy code that works is better than clean code that doesn't. First, prioritize getting things working. Then, if there is time at the end, refactor your code to adhere to best practices. When you encounter duplicated logic, extract it into a shared helper method.*
 
 *Before you submit! - Save and run your code to verify that it works as you expect. If you have any methods that are not working yet, feel free to leave comments describing your progress.*
-
-#### *NB: Pipfile sample for reference*
-
-```python
-[[source]]
-url = "https://pypi.org/simple"
-verify_ssl = true
-name = "pypi"
-
-[packages]
-ipdb = "*"
-
-[dev-packages]
-
-[requires]
-python_version = "3.10"
-
-```
 
 ## Deliverables
 
